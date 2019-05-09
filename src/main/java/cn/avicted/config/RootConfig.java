@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @ClassName RootConfig
  * @Description TODO
  * @Author xulei
- * @Date 2019/5/9/009 10:51
+ * @Date 2019/5/9 10:51
  * @Version 1.0
  **/
 @Configuration
