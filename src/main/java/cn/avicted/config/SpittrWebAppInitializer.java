@@ -13,19 +13,26 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 
     /**
     * @Author xulei
-    * @Description 指定配置类
+    * @Description 该方法返回的带有@Configuration注解的类将会用来定义ContextLoaderListener应用上下文中的bean
     * @Date 10:28 2019/5/9/009
     * @Param []
     * @return java.lang.Class<?>[]
     **/
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{WebConfig.class};
+        return new Class<?>[]{RootConfig.class};
     }
 
+    /**
+    * @Author xulei
+    * @Description 该方法返回的带有@Configuration注解的类将会用来定义DispatcherServlet应用上下文中的bean
+    * @Date 15:06 2019/5/9/009
+    * @Param []
+    * @return java.lang.Class<?>[]
+    **/
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{RootConfig.class};
+        return new Class<?>[]{WebConfig.class};
     }
 
     /**

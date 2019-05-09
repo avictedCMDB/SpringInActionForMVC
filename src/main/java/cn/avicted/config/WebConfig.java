@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
  * @ClassName WebConfig
- * @Description TODO
+ * @Description 使用Java进行配置 WebConfig配置类
  * @Author xulei
  * @Date 2019/5/9 10:51
  * @Version 1.0
@@ -21,10 +21,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("cn.avicted.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+    /**
+    * @Author xulei
+    * @Description 配置视图解析器
+    * @Date 15:10 2019/5/9/009
+    * @Param []
+    * @return org.springframework.web.servlet.ViewResolver
+    **/
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB_INF/views/");
+        resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
 
         resolver.setExposeContextBeansAsAttributes(true);
