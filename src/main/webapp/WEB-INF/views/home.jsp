@@ -1,18 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: xulei
-  Date: 2019/5/9/009
-  Time: 15:27
+  Date: 2019/5/10/010
+  Time: 14:30
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Spittr</title>
+    <title>Title</title>
 </head>
 <body>
-    <h1>Welcom to Spittr</h1>
+<h1>Welcom to Spittr</h1>
 
-    <a href="http://www.baidu.com">Spittles</a> | <a href="https://blog.csdn.net/qq_35448976/article/details/76560206">Register</a>
+<a href="http://www.baidu.com">Spittles</a> | <a href="https://blog.csdn.net/qq_35448976/article/details/76560206">Register</a>
 </body>
 </html>
