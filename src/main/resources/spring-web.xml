@@ -8,7 +8,7 @@
         <property name="prefix" value="/WEB-INF/views/" ></property>
         <property name="suffix" value=".html" ></property>
     </bean>
-    
+
 
 
 
