@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>Register</h1>
-    <form method="post">
+    <form method="post" >
         First Name: <input type="text" name="firstName" /><br/>
         Last Name: <input type="text" name="lastName" /><br/>
         UserName: <input type="text" name="username" /><br/>
