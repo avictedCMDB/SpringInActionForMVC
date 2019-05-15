@@ -13,11 +13,12 @@
 </head>
 <body>
     <h1>Register</h1>
-    <form method="post" >
+    <form method="post" enctype="multipart/form-data">
         First Name: <input type="text" name="firstName" /><br/>
         Last Name: <input type="text" name="lastName" /><br/>
         UserName: <input type="text" name="username" /><br/>
         Password: <input type="password" name="password" /><br/>
+        File:<input type="multipartFile" name="profilePicture">
         <input type="submit" value="Register">
     </form>
 </body>

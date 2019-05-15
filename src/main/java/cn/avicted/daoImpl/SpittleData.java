@@ -40,6 +40,11 @@ public class SpittleData implements SpittleRepository {
         return null;
     }
 
+    @Override
+    public Boolean saveSpittle(Spittle spittle) {
+        System.out.println("saveSpittle方法：" + spittle.getMessage());
+        return true;
+    }
 
 
 }
