@@ -70,15 +70,22 @@ public class SpittleController {
         return "spittle";
     }
 
+    /**
+    * @Author xulei
+    * @Description 抛出DuplicateSpittleException异常，会找到AppWideExceptionHandler中异常方法
+    * @Date 13:32 2019/5/15/015
+    * @Param [spittle, model]
+    * @return java.lang.String
+    **/
     @RequestMapping(value = "/saveSpittle", method = RequestMethod.POST)
-    public String saveSpittle(Spittle spittle, Model model) {
-        try {
+    public String saveSpittle(Spittle spittle, Model model) throws DuplicateSpittleException{
+        //try {
             spittleData.saveSpittle(spittle);
             return "redirect:/spittles";
 
-        } catch (DuplicateSpittleException e) {
-            return "error/duplicate";
-        }
+        //} catch (DuplicateSpittleException e) {
+            //return "error/duplicate";
+        //}
 
     }
 

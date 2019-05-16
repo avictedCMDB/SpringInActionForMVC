@@ -15,6 +15,7 @@ public class AppWideExceptionHandler {
 
     @ExceptionHandler(DuplicateSpittleException.class)
     public String duplicateSpittleHandler() {
+
         return "error/duplicate";
     }
 
