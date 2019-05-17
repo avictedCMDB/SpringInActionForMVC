@@ -17,6 +17,7 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <spring.version>4.3.7.RELEASE</spring.version>
+    <spring.security.version>5.1.2.RELEASE</spring.security.version>
   </properties>
 
   <dependencies>
@@ -79,14 +80,20 @@
       <version>1.9.3</version>
     </dependency>
 
-    <!-- slf4j日志包 -->
+      <!-- 数据库连接池 -->
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid</artifactId>
+          <version>1.1.12</version>
+      </dependency>
+
+      <!-- slf4j日志包 -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>1.7.26</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -94,33 +101,57 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.9</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
     <dependency>
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
 
-      <!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
-      <dependency>
-          <groupId>org.apache.taglibs</groupId>
-          <artifactId>taglibs-standard-impl</artifactId>
-          <version>1.2.5</version>
-      </dependency>
+    <dependency>
+      <groupId>org.apache.taglibs</groupId>
+      <artifactId>taglibs-standard-impl</artifactId>
+      <version>1.2.5</version>
+    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>5.1.0.Final</version>
     </dependency>
+
+    <!--配置Spring Security模块-->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+
+    <dependency>
+       <groupId>org.springframework.security</groupId>
+       <artifactId>spring-security-taglibs</artifactId>
+       <version>${spring.security.version}</version>
+    </dependency>
+
+
+
 
 
 

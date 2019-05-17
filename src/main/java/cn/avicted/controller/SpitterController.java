@@ -1,10 +1,7 @@
 package cn.avicted.controller;
 
-import cn.avicted.dao.SpittleRepository;
 import cn.avicted.daoImpl.SpitterData;
-import cn.avicted.daoImpl.SpittleData;
 import cn.avicted.model.Spitter;
-import cn.avicted.model.Spittle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Part;
 import javax.validation.Valid;
@@ -40,14 +38,17 @@ public class SpitterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String processRegistration(@Valid Spitter spitter, Errors errors) {
+    public String processRegistration(@Valid Spitter spitter, Model model, Errors errors) {
         //校验参数错误信息
         if (errors.hasErrors()) {
             return "registerForm";
         }
 
         spitterData.save(spitter);
-        return "redirect:/spitter/" + spitter.getUserName();
+        //return "redirect:/spitter/" + spitter.getUserName();
+
+        model.addAttribute("username", spitter.getUserName());
+        return "redirect:/spitter/{username}";
     }
 
     /**
@@ -91,9 +92,9 @@ public class SpitterController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
         spitterData.save(spitter);
         return "redirect:/spitter/" + spitter.getUserName();
+
     }
 
     @RequestMapping(value = "/{userName}",method = RequestMethod.GET)
@@ -105,6 +106,23 @@ public class SpitterController {
     }
 
 
+    @RequestMapping(value = "/registerForFlash", method = RequestMethod.POST)
+    public String processRegistrationForFlash(@Valid Spitter spitter, RedirectAttributes redirectAttributes, Errors errors) {
+
+        spitterData.save(spitter);
+
+        redirectAttributes.addAttribute("username", spitter.getUserName());
+        redirectAttributes.addFlashAttribute("spitter", spitter);
+        return "redirect:/spitter/{username}";
+    }
+
+    @RequestMapping(value = "{username}", method = RequestMethod.GET)
+    public String showSpitterProfile(@PathVariable String username, RedirectAttributes redirectAttributes) {
+        if (!redirectAttributes.containsAttribute("spitter")) {
+            redirectAttributes.addAttribute(spitterData.findByUsername(username));
+        }
+        return "profile";
+    }
 
 
 }
