@@ -1,6 +1,8 @@
 package cn.avicted.utile;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -12,6 +14,8 @@ import java.util.Date;
  **/
 public class DateFormate {
 
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static String formateDate(Date date){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String strDate = simpleDateFormat.format(date);
@@ -19,10 +23,16 @@ public class DateFormate {
     }
 
 
+    public static String formateDate1(LocalDateTime date) {
+        String strDate = formatter.format(date);
+        return strDate;
+    }
 
 
     public static void main(String[] args) {
-        DateFormate dateFormate = new DateFormate();
-        System.out.println(dateFormate.formateDate(new Date()));
+        //DateFormate dateFormate = new DateFormate();
+        System.out.println(DateFormate.formateDate1(LocalDateTime.now()));
     }
+
+
 }
