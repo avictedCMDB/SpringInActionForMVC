@@ -1,6 +1,7 @@
 package cn.avicted.mongoDB.config;
 
-import com.mongodb.Mongo;
+import com.mongodb.client.MongoClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoClientFactoryBean;
@@ -19,6 +20,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "cn.avicted.mongoDB")
 public class MongoConfig {
 
+    private MongoClient mongoClient;
+
     @Bean
     public MongoClientFactoryBean mongo() {
         MongoClientFactoryBean mongo = new MongoClientFactoryBean();
@@ -27,8 +30,9 @@ public class MongoConfig {
     }
 
     @Bean
-    public MongoOperations mongoTemplate(Mongo mongo) {
-        return new MongoTemplate(mongo, "OrdersDB");
+    public MongoOperations mongoTemplate() {
+
+        return new MongoTemplate(mongoClient, "OrdersDB");
     }
 
 
