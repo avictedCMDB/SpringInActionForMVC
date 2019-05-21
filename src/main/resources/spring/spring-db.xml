@@ -51,7 +51,7 @@
     </bean>
 
     <!-- 配置事务管理 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
         <property name="dataSource" ref="druidDataSource" />
     </bean>
 
