@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:neo4j="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置嵌入式数据库-->
+    <neo4j:config storeDirectory="/tmp/graphdb" base-package="cn.avicted.neo4j" />
+    <neo4j:repositories base-package="cn.avicted.neo4j" />
+
+    <!--配置访问远程服务器数据库-->
+    <neo4j:config base-package="cn.avicted.neo4j" graphDatabaseService="graphDatabaseService" />
+    <bean id="graphDatabaseService" class="org.springframework.data.neo4j.rest.SpringCypherRestGraphDatabase" >
+        <constructor-arg value="Http://graphdbserver:7474/db/data/" />
+        <constructor-arg value="db.username" />
+        <constructor-arg value="db.password" />
+    </bean>
+
+
+
+</beans>
