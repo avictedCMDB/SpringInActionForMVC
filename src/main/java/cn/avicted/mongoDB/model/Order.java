@@ -58,4 +58,5 @@ public class Order {
     public void setItems(Collection<Item> items) {
         this.items = items;
     }
+
 }
