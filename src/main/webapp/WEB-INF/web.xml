@@ -41,6 +41,7 @@
     <servlet-mapping>
         <servlet-name>springMvc</servlet-name>
         <url-pattern>/</url-pattern>
+        <url-pattern>*.service</url-pattern>
     </servlet-mapping>
 
 
