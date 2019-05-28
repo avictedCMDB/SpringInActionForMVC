@@ -18,4 +18,16 @@
         <property name="maxInMemorySize" value="10960" />
     </bean>
 
+    <!--<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean" >
+        <property name="defaultContentType" value="application/json" />
+    </bean>-->
+    <bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes" >
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+
 </beans>
