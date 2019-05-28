@@ -233,6 +233,12 @@
           <version>2.9.8</version>
       </dependency>
 
+      <!-- 配置消息代理 -->
+      <dependency>
+          <groupId>org.apache.activemq</groupId>
+          <artifactId>activemq-broker</artifactId>
+          <version>5.15.8</version>
+      </dependency>
 
 
 

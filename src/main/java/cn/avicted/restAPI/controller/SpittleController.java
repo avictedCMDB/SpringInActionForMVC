@@ -43,7 +43,6 @@ public class SpittleController {
     public Spittle spittleById(@PathVariable long id) {
         /*Spittle spittle = spittleRepository.findOne(id);
         HttpStatus status = spittle != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-
         return new ResponseEntity<Spittle>(spittle, status);*/
 
         Spittle spittle = spittleRepository.findOne(id);
