@@ -2,6 +2,7 @@ package cn.avicted.restAPI.controller;
 
 import cn.avicted.dao.SpittleRepository;
 import cn.avicted.model.Spittle;
+import cn.avicted.restAPI.exception.SpittleNotFoundException;
 import cn.avicted.restAPI.utils.Error;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,8 +39,8 @@ public class SpittleController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    //@ResponseBody
-    public ResponseEntity<?> spittleById(@PathVariable long id) {
+    @ResponseBody
+    public Spittle spittleById(@PathVariable long id) {
         /*Spittle spittle = spittleRepository.findOne(id);
         HttpStatus status = spittle != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 
@@ -47,12 +48,10 @@ public class SpittleController {
 
         Spittle spittle = spittleRepository.findOne(id);
         if (spittle == null) {
-            Error error = new Error();
-            error.setCode(4);
-            error.setMessage("Spittle [" + id + "] not found");
-            return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+            throw new SpittleNotFoundException(id);
         }
-        return new ResponseEntity<>(spittle, HttpStatus.NOT_FOUND);
+
+        return spittle;
 
 
     }

@@ -10,13 +10,12 @@ package cn.avicted.restAPI.exception;
 public class SpittleNotFoundException extends RuntimeException {
     private Long spittleId;
 
-    public Long getSpittleId() {
-        return spittleId;
-    }
-
-    public void setSpittleId(Long spittleId) {
+    public SpittleNotFoundException(Long spittleId) {
         this.spittleId = spittleId;
     }
 
+    public Long getSpittleId() {
+        return spittleId;
+    }
 
 }
