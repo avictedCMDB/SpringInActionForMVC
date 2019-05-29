@@ -40,6 +40,11 @@
     <bean id="topic" class="org.apache.activemq.command.ActiveMQTopic">
         <constructor-arg value="spitter.topic" />
     </bean>
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <constructor-arg ref="connectionFactory" />
+        <!--<property name="defaultDestinationName" value="spittle.alert.queue" />-->
+        <property name="defaultDestination" ref="topic" />
+    </bean>
 
 
 

@@ -3,6 +3,7 @@ package cn.avicted.model;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  * @Date 2019/5/10/010 13:54
  * @Version 1.0
  **/
-public class Spittle {
+public class Spittle implements Serializable {
     private Long id;
     private String message;
     private String time;
