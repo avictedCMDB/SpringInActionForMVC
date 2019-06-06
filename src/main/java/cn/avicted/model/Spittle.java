@@ -19,6 +19,7 @@ public class Spittle implements Serializable {
     private String time;
     private Double latitude;
     private Double longitude;
+    private Spitter spitter;
 
     public Spittle(String message, String time) {
         this.message = message;
@@ -71,6 +72,14 @@ public class Spittle implements Serializable {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public Spitter getSpitter() {
+        return spitter;
+    }
+
+    public void setSpitter(Spitter spitter) {
+        this.spitter = spitter;
     }
 
     @Override

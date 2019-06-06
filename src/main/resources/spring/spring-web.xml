@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
 
     <!--配置视图解析器-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,18 +32,37 @@
     <!-- 配置JMS连接工厂  以便连接到ActiveMQ-->
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory" >
         <property name="brokerURL" value="tcp://localhost:61616" />
-
     </bean>
+    <!-- 声明ActiveMQ消息目的地 -->
     <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="spitter.queue" />
     </bean>
     <bean id="topic" class="org.apache.activemq.command.ActiveMQTopic">
         <constructor-arg value="spitter.topic" />
     </bean>
+
+    <!-- 配置消息转换器 [如果不配置，则使用默认的SimpleMessageConverter] -->
+    <bean id="messageConverter" class="org.springframework.jms.support.converter.MappingJackson2MessageConverter" />
+
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <constructor-arg ref="connectionFactory" />
         <!--<property name="defaultDestinationName" value="spittle.alert.queue" />-->
+        <!-- 设置默认的发送地址 -->
         <property name="defaultDestination" ref="topic" />
+        <property name="messageConverter" ref="messageConverter" />
+     </bean>
+
+    <!-- 配置消息监听器 -->
+    <bean id="spittleHandler" class="cn.avicted.restAPI.handler.SpittleAlertHandler" />
+    <jms:listener-container connection-factory="connectionFactory" >
+        <jms:listener destination="spitter.queue" ref="spittleHandler" method="handleSpittleAlert" />
+    </jms:listener-container>
+
+
+    <!-- 配置导出基于JMS的服务 -->
+    <bean id="alertServiceExporter" class="org.springframework.jms.remoting.JmsInvokerServiceExporter">
+        <property name="service" value="cn.avicted.restAPI.serviceImpl.AlertServiceImpl" />
+        <property name="serviceInterface" value="cn.avicted.restAPI.service.AlertService" />
     </bean>
 
 

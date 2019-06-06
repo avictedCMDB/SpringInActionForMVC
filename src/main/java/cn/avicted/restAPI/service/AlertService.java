@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AlertService {
     void sendSpittleAlert(Spittle spittle);
+    Spittle receiveSpittleAlert();
+    Spittle retrieve();
 }
