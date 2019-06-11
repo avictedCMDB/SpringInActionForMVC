@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://www.springframework.org/schema/jms"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+       xmlns:websoket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
     <!--配置视图解析器-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -54,8 +55,8 @@
 
     <!-- 配置消息监听器 -->
     <bean id="spittleHandler" class="cn.avicted.restAPI.handler.SpittleAlertHandler" />
-    <jms:listener-container connection-factory="connectionFactory" >
-        <jms:listener destination="spitter.queue" ref="spittleHandler" method="handleSpittleAlert" />
+    <jms:listener-container connection-factory="connectionFactory" ><!--消息监听容器-->
+        <jms:listener destination="spitter.queue" ref="spittleHandler" method="handleSpittleAlert" /><!--消息监听器-->
     </jms:listener-container>
 
 
@@ -64,10 +65,22 @@
         <property name="service" value="cn.avicted.restAPI.serviceImpl.AlertServiceImpl" />
         <property name="serviceInterface" value="cn.avicted.restAPI.service.AlertService" />
     </bean>
+    <!--配置JMS监听器-->
+    <jms:listener-container connection-factory="connectionFactory">
+        <jms:listener destination="spitter.queue" ref="alertServiceExporter" />
+    </jms:listener-container>
 
+    <bean id="alertService" class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean">
+        <property name="connectionFactory" value="connectionFactory" />
+        <property name="queueName" value="spittle.queue" />
+        <property name="serviceInterface" value="cn.avicted.restAPI.service.AlertService" />
+    </bean>
 
-
-
+    <!--配置webSocket-->
+    <bean id="marcoHandler" class="cn.avicted.webSocket.controller.MarcoHandler" />
+    <websoket:handlers>
+        <websoket:mapping path="/marco" handler="marcoHandler"/>
+    </websoket:handlers>
 
 
 </beans>
