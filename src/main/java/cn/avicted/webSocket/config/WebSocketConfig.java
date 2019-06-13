@@ -33,4 +33,18 @@ public class WebSocketConfig implements WebSocketConfigurer {
         return new MarcoHandler();
     }
 
+
+    /**
+    * @Author xulei
+    * @Description 使用SockJS
+    * @Date 9:14 2019/6/12/012
+    * @Param [webSocketHandlerRegistry]
+    * @return void
+    **/
+    /*@Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
+        webSocketHandlerRegistry.addHandler(marcoHandler(),"/marco").withSockJS();
+    }*/
+
+
 }

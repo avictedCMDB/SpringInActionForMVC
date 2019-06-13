@@ -10,6 +10,20 @@
         <property name="suffix" value=".html" ></property>
     </bean>
 
+    <!--如果前端使用Thymeleaf模板引擎，配置Thymeleaf试图解析器-->
+    <!--<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="html5" />
+    </bean>
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine" >
+        <property name="templateResolver" ref="templateResolver" />
+    </bean>
+    <bean id="thymeleafViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        &lt;!&ndash;解决中文乱码&ndash;&gt;
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>-->
 
     <bean id="standardMultipart" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
 
@@ -80,7 +94,21 @@
     <bean id="marcoHandler" class="cn.avicted.webSocket.controller.MarcoHandler" />
     <websoket:handlers>
         <websoket:mapping path="/marco" handler="marcoHandler"/>
+        <!--<websoket:sockjs />-->
     </websoket:handlers>
+
+    <!--配置STOMP-->
+    <bean id="mappingJackson2MessageConverter" class="org.springframework.messaging.converter.MappingJackson2MessageConverter" />
+    <websoket:message-broker application-destination-prefix="/app">
+        <websoket:stomp-endpoint path="/stomp">
+            <websoket:sockjs />
+        </websoket:stomp-endpoint>
+
+        <websoket:stomp-broker-relay prefix="/topic,/queue"
+                relay-host="remoteServerAddress" relay-port="56236" client-login="ffasfs" client-passcode="12345678"/>
+    </websoket:message-broker>
+
+
 
 
 </beans>
