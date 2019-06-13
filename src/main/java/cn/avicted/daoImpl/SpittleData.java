@@ -23,9 +23,9 @@ public class SpittleData implements SpittleRepository {
     @Override
     public List<Spittle> findSpittles(long max, int count) {
 
-        spittles.add(new Spittle("xulei", DateFormate.formateDate(new Date()), 34.56, 56.32));
+        /*spittles.add(new Spittle("xulei", DateFormate.formateDate(new Date()), 34.56, 56.32));
         spittles.add(new Spittle("lihuichao", DateFormate.formateDate(new Date()), 89.63, 45.12));
-        spittles.add(new Spittle("linyi", DateFormate.formateDate(new Date()), 456.32, 51.98));
+        spittles.add(new Spittle("linyi", DateFormate.formateDate(new Date()), 456.32, 51.98));*/
 
         return spittles;
     }
