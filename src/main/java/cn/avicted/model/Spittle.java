@@ -21,7 +21,7 @@ public class Spittle implements Serializable {
     private Double longitude;
     private Spitter spitter;
 
-    public Spittle(String message, String time) {
+   /* public Spittle(String message, String time) {
         this.message = message;
         this.time = time;
     }
@@ -32,7 +32,7 @@ public class Spittle implements Serializable {
         this.time = time;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
+    }*/
 
     public Long getId() {
         return id;
